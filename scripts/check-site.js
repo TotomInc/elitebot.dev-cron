@@ -1,7 +1,7 @@
 const { chromium } = require('playwright-extra');
 const stealth = require('puppeteer-extra-plugin-stealth')();
+const path = require('path');
 
-// Add stealth plugin
 chromium.use(stealth);
 
 (async () => {
@@ -18,6 +18,10 @@ chromium.use(stealth);
     viewport: { width: 1920, height: 1080 },
     screen: { width: 1920, height: 1080 },
     hasTouch: false,
+    recordVideo: process.env.RECORD_VIDEO === 'true' ? {
+      dir: 'test-results/video/',
+      size: { width: 1920, height: 1080 }
+    } : undefined
   });
   
   const page = await context.newPage();
@@ -29,7 +33,6 @@ chromium.use(stealth);
       timeout: 30000
     });
     
-    // Add random delay to seem more human-like
     await page.waitForTimeout(Math.random() * 2000 + 1000);
     
     console.log('Waiting for playName element...');
@@ -43,10 +46,12 @@ chromium.use(stealth);
     console.log('Check passed successfully');
   } catch (error) {
     console.error('Check failed:', error);
+    await context.close();
     await browser.close();
     process.exit(1);
   }
   
+  await context.close();
   await browser.close();
   process.exit(0);
 })();

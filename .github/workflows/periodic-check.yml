@@ -4,6 +4,13 @@ on:
   schedule:
     # Run at 08:00, 14:00, 20:00, and 00:00 UTC
     - cron: '0 0,8,14,20 * * *'
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: 'Enable debug mode (shows browser)'
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   check-site:
@@ -21,4 +28,14 @@ jobs:
         run: npm run setup
           
       - name: Run check
+        env:
+          RECORD_VIDEO: true
         run: npm test
+        
+      - name: Upload video artifact
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-video
+          path: test-results/video/*.webm
+          retention-days: 7
