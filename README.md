@@ -4,10 +4,10 @@ Visit the [Elitebot.dev @TotomInc profile](https://elitebot.dev) to create a sna
 
 ## Overview
 
-This action runs every 6 hours (at 00:00, 08:00, 14:00, and 20:00 UTC) and performs the following:
+This action runs every multiple times per day, every day, and performs the following:
 - Launches a headless Chrome browser using Playwright
 - Navigates to a specified website
-- Verifies the presence of specific content
+- Verifies the presence of specific content _(to ensure the website has been loaded correctly)_
 - Reports success or failure through GitHub Actions
 
 ## Technical Details
@@ -15,7 +15,7 @@ This action runs every 6 hours (at 00:00, 08:00, 14:00, and 20:00 UTC) and perfo
 - Uses Node.js 20 and Playwright
 - Implements stealth mode to bypass bot detection
 - Runs on Ubuntu latest
-- Uses playwright-extra and puppeteer-extra-plugin-stealth for enhanced capabilities
+- Uses `playwright-extra` and `puppeteer-extra-plugin-stealth` for enhanced capabilities
 
 ## Project Structure
 
@@ -52,13 +52,16 @@ npm run debug
 
 ## Workflow Schedule
 
-The check runs four times daily:
+The check runs nine times daily:
 - 00:00 UTC
 - 08:00 UTC
+- 10:00 UTC
+- 12:00 UTC
 - 14:00 UTC
+- 16:00 UTC
+- 18:00 UTC
 - 20:00 UTC
-
-We can't check more than four times a day because of limited Data Points from Elitbot.dev website.
+- 22:00 UTC
 
 ## Error Handling
 
