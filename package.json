@@ -1,0 +1,21 @@
+{
+  "name": "github-cron",
+  "version": "1.0.0",
+  "description": "Periodic site check with Playwright",
+  "main": "scripts/check-site.js",
+  "scripts": {
+    "setup": "npm install && npx playwright install chromium",
+    "start": "node scripts/check-site.js",
+    "test": "node scripts/check-site.js",
+    "debug": "cross-env HEADLESS=false node scripts/check-site.js"
+  },
+  "dependencies": {
+    "@playwright/test": "1.50.1",
+    "playwright-extra": "4.3.6",
+    "puppeteer-extra-plugin-stealth": "2.11.2",
+    "cross-env": "7.0.3"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

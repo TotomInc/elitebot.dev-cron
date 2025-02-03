@@ -1,0 +1,24 @@
+name: Periodic Site Check
+
+on:
+  schedule:
+    # Run at 08:00, 14:00, 20:00, and 00:00 UTC
+    - cron: '0 0,8,14,20 * * *'
+
+jobs:
+  check-site:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          
+      - name: Install dependencies
+        run: npm run setup
+          
+      - name: Run check
+        run: npm test
