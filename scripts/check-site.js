@@ -28,7 +28,7 @@ chromium.use(stealth);
   
   try {
     console.log('Navigating to site...');
-    await page.goto('https://elitebot.dev/@HSkyblockEnjoyer/Pear/charts', {
+    await page.goto('https://elitebot.dev/@JacobsReaper/Coconut/charts', {
       waitUntil: 'networkidle',
       timeout: 30000
     });
@@ -39,8 +39,8 @@ chromium.use(stealth);
     const element = await page.waitForSelector('div#playerName');
     const text = await element.textContent();
     
-    if (!text.includes('HSkyblockEnjoyer')) {
-      throw new Error(`Expected playerName to be HSkyblockEnjoyer but got: ${text}`);
+    if (!text.includes('JacobsReaper')) {
+      throw new Error(`Expected playerName to be JacobsReaper but got: ${text}`);
     }
     
     console.log('Check passed successfully');
