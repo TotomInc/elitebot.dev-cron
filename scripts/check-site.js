@@ -28,7 +28,7 @@ chromium.use(stealth);
   
   try {
     console.log('Navigating to site...');
-    await page.goto('https://elitebot.dev/@JacobsReaper/Coconut/charts', {
+    await page.goto('https://elitebot.dev/@JacobsReaper/Peach/charts', {
       waitUntil: 'networkidle',
       timeout: 30000
     });
